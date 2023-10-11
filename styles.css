@@ -28,6 +28,14 @@ body {
     font-size: 1.5rem;
 }
 
+#calculadora-conta {
+    display: block;
+    padding: 0.5rem;
+    height: 0.5rem;
+    width: 16rem;
+    text-align: right;
+}
+
 .calculadora-botoes-container {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
