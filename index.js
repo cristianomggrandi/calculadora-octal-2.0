@@ -1,6 +1,10 @@
 const resultado = document.getElementById("calculadora-resultado")
 const conta = document.getElementById("calculadora-conta")
 
+function calcularExpressao(expressao) {
+    return eval(expressao.replaceAll("⨯", "*").replaceAll("÷", "/"))
+}
+
 const botoesNumerais = document.getElementsByClassName("calculadora-botao-numero")
 
 for (botao of botoesNumerais) {
@@ -15,7 +19,7 @@ for (botao of botoesOperadores) {
     botao.addEventListener("click", e => {
         const simbolo = e.target.textContent
 
-        conta.textContent = conta.textContent + resultado.textContent + simbolo
+        conta.textContent = calcularExpressao(conta.textContent + resultado.textContent) + simbolo
 
         resultado.textContent = "0"
     })
@@ -24,9 +28,7 @@ for (botao of botoesOperadores) {
 const botaoIgual = document.getElementsByClassName("calculadora-botao-igual")[0]
 
 botaoIgual.addEventListener("click", e => {
-    const stringConta = (conta.textContent + resultado.textContent).replaceAll("⨯", "*").replaceAll("÷", "/")
-
-    resultado.textContent = eval(stringConta)
+    resultado.textContent = calcularExpressao(conta.textContent + resultado.textContent)
     conta.textContent = ""
 })
 
