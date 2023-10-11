@@ -46,4 +46,5 @@ body {
 .calculadora-botoes-container > button {
     width: 100%;
     aspect-ratio: 1/1;
+    font-size: 1.25rem;
 }
