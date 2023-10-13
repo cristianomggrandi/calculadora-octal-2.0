@@ -110,3 +110,29 @@ botaoClear.addEventListener("click", e => {
     if (resultado.textContent !== "0") resultado.textContent = "0"
     else conta.textContent = ""
 })
+
+const botoesBase = document.getElementsByName("base")
+
+for (botao of botoesBase) {
+    botao.addEventListener("change", e => {
+        let numeroBase
+
+        switch (e.target.id) {
+            case "dec":
+                numeroBase = 10
+                break
+            case "bin":
+                numeroBase = 2
+                break
+            case "oct":
+                numeroBase = 8
+                break
+        }
+
+        for (botao of botoesNumerais) {
+            const numeroBotao = Number(botao.textContent)
+            if (numeroBotao > numeroBase) botao.disabled = true
+            else botao.disabled = false
+        }
+    })
+}
