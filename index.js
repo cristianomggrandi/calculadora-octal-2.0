@@ -2,7 +2,11 @@ const resultado = document.getElementById("calculadora-resultado")
 const conta = document.getElementById("calculadora-conta")
 
 function calcularExpressao(expressao) {
-    return eval(expressao.replaceAll("⨯", "*").replaceAll("÷", "/"))
+    const resultado = eval(expressao.replaceAll("⨯", "*").replaceAll("÷", "/"))
+
+    if (resultado !== NaN && resultado !== Infinity) return eval(expressao.replaceAll("⨯", "*").replaceAll("÷", "/"))
+
+    return 0
 }
 
 const botoesNumerais = document.getElementsByClassName("calculadora-botao-numero")
@@ -25,6 +29,22 @@ for (botao of botoesOperadores) {
     })
 }
 
+const botaoRaiz = document.getElementsByClassName("calculadora-botao-raiz")[0]
+
+botaoRaiz.addEventListener("click", e => {
+    if (resultado.textContent !== "0") {
+        resultado.textContent = Math.sqrt(Number(resultado.textContent))
+    }
+})
+
+const botaoQuadrado = document.getElementsByClassName("calculadora-botao-quadrado")[0]
+
+botaoQuadrado.addEventListener("click", e => {
+    if (resultado.textContent !== "0") {
+        resultado.textContent = Number(resultado.textContent) * Number(resultado.textContent)
+    }
+})
+
 const botaoIgual = document.getElementsByClassName("calculadora-botao-igual")[0]
 
 botaoIgual.addEventListener("click", e => {
@@ -36,4 +56,11 @@ const botaoVirgula = document.getElementsByClassName("calculadora-botao-virgula"
 
 botaoVirgula.addEventListener("click", e => {
     if (!resultado.textContent.includes(".")) resultado.textContent = resultado.textContent + "."
+})
+
+const botaoClear = document.getElementsByClassName("calculadora-botao-clear")[0]
+
+botaoClear.addEventListener("click", e => {
+    if (resultado.textContent !== "0") resultado.textContent = "0"
+    else conta.textContent = ""
 })

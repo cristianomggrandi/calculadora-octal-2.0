@@ -26,6 +26,7 @@ body {
     text-align: right;
     line-height: 3rem;
     font-size: 1.5rem;
+    font-family: "Arial";
 }
 
 #calculadora-conta {
@@ -43,8 +44,18 @@ body {
     gap: 0.5rem;
 }
 
+button {
+    aspect-ratio: 1/1;
+}
+
 .calculadora-botoes-container > button {
     width: 100%;
-    aspect-ratio: 1/1;
     font-size: 1.25rem;
+    font-family: "Arial";
+}
+
+.calculadora-botao-zero {
+    grid-column: 2 / span 2;
+    aspect-ratio: 2 / 1;
+    height: calc(100% - 0.25rem);
 }
