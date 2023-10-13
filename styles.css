@@ -1,7 +1,7 @@
 body {
     margin: 0;
     padding: 0;
-    background-color: antiquewhite;
+    background-color: aquamarine;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -11,11 +11,14 @@ body {
 .calculadora-container {
     border: 2px black solid;
     padding: 1rem;
+    background-color: antiquewhite;
+    border-radius: 0.5rem;
 }
 
 .calculadora-resultado-container {
     border: 1px black solid;
     margin: 1rem 0;
+    background-color: white;
 }
 
 #calculadora-resultado {
@@ -47,6 +50,9 @@ body {
 
 button {
     aspect-ratio: 1/1;
+    background-color: white;
+    border-radius: 0.25rem;
+    border: 1px solid black;
 }
 
 .calculadora-botoes-container > button {
@@ -59,4 +65,16 @@ button {
     grid-column: 2 / span 2;
     aspect-ratio: 2 / 1;
     height: calc(100% - 0.25rem);
+}
+
+.calculadora-botao-operacao, .calculadora-botao-raiz, .calculadora-botao-quadrado {
+    background-color: gainsboro;
+}
+
+.calculadora-botao-igual {
+    background-color: rgb(43, 203, 43);
+}
+
+.calculadora-botao-clear {
+    background-color: rgb(250, 46, 46);
 }
