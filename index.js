@@ -1,6 +1,52 @@
 const resultado = document.getElementById("calculadora-resultado")
 const conta = document.getElementById("calculadora-conta")
 
+document.onkeydown = e => {
+    const numeroPressionado = Number(e.key)
+
+    if (!isNaN(numeroPressionado)) {
+        resultado.textContent = (resultado.textContent !== "0" ? resultado.textContent : "") + numeroPressionado.toString()
+    } else {
+        switch (e.key) {
+            case "*":
+            case "x":
+            case "/":
+            case "+":
+            case "-":
+                const simbolo = e.key.replace("*", "x").replace("/", "÷")
+
+                conta.textContent = calcularExpressao(conta.textContent + resultado.textContent) + simbolo
+                resultado.textContent = "0"
+
+                break
+            case "=":
+            case "Enter":
+                resultado.textContent = calcularExpressao(conta.textContent + resultado.textContent)
+                conta.textContent = ""
+
+                break
+            case "c":
+            case "C":
+                if (resultado.textContent !== "0") resultado.textContent = "0"
+                else conta.textContent = ""
+
+                break
+            case "q":
+            case "Q":
+                if (resultado.textContent !== "0") {
+                    resultado.textContent = Number(resultado.textContent) * Number(resultado.textContent)
+                }
+                break
+            case "r":
+            case "R":
+                if (resultado.textContent !== "0") {
+                    resultado.textContent = Math.sqrt(Number(resultado.textContent))
+                }
+                break
+        }
+    }
+}
+
 function calcularExpressao(expressao) {
     const resultado = eval(expressao.replaceAll("⨯", "*").replaceAll("÷", "/"))
 
