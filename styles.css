@@ -10,14 +10,13 @@ body {
 
 .calculadora-container {
     border: 2px black solid;
-    padding: 1rem;
+    padding: 1.5rem 1rem;
     background-color: antiquewhite;
     border-radius: 0.5rem;
 }
 
 .calculadora-resultado-container {
     border: 1px black solid;
-    margin: 1rem 0;
     background-color: white;
 }
 
@@ -39,6 +38,34 @@ body {
     height: 0.5rem;
     width: 16rem;
     text-align: right;
+}
+
+.calculadora-bases-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    height: 2rem;
+    margin: 0.5rem 0;
+}
+
+.calculadora-bases-container > label {
+    height: 1.5rem;
+    font-size: 0.75rem;
+    flex: 1;
+    border: 1px solid black;
+    border-radius: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.calculadora-bases-container > input {
+    display: none;
+}
+
+.calculadora-bases-container > input:checked + label {
+    background-color: grey;
 }
 
 .calculadora-botoes-container {
