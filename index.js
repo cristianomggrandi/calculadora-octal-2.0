@@ -1,10 +1,12 @@
+let baseSelecionada = 10
+
 const resultado = document.getElementById("calculadora-resultado")
 const conta = document.getElementById("calculadora-conta")
 
 document.onkeydown = e => {
     const numeroPressionado = Number(e.key)
 
-    if (!isNaN(numeroPressionado)) {
+    if (!isNaN(numeroPressionado) && numeroPressionado < baseSelecionada) {
         resultado.textContent = (resultado.textContent !== "0" ? resultado.textContent : "") + numeroPressionado.toString()
     } else {
         switch (e.key) {
@@ -101,7 +103,7 @@ botaoIgual.addEventListener("click", e => {
 const botaoVirgula = document.getElementsByClassName("calculadora-botao-virgula")[0]
 
 botaoVirgula.addEventListener("click", e => {
-    if (!resultado.textContent.includes(".")) resultado.textContent = resultado.textContent + "."
+    if (!resultado.textContent.includes(".") && baseSelecionada === 10) resultado.textContent = resultado.textContent + "."
 })
 
 const botaoClear = document.getElementsByClassName("calculadora-botao-clear")[0]
@@ -115,24 +117,26 @@ const botoesBase = document.getElementsByName("base")
 
 for (botao of botoesBase) {
     botao.addEventListener("change", e => {
-        let numeroBase
+        const baseAnterior = baseSelecionada
 
         switch (e.target.id) {
             case "dec":
-                numeroBase = 10
+                baseSelecionada = 10
                 break
             case "bin":
-                numeroBase = 2
+                baseSelecionada = 2
                 break
             case "oct":
-                numeroBase = 8
+                baseSelecionada = 8
                 break
         }
 
         for (botao of botoesNumerais) {
             const numeroBotao = Number(botao.textContent)
-            if (numeroBotao > numeroBase) botao.disabled = true
+            if (numeroBotao >= baseSelecionada) botao.disabled = true
             else botao.disabled = false
         }
+
+        resultado.textContent = parseInt(resultado.textContent, baseAnterior).toString(baseSelecionada)
     })
 }
