@@ -50,9 +50,20 @@ document.onkeydown = e => {
 }
 
 function calcularExpressao(expressao) {
-    const resultado = eval(expressao.replaceAll("⨯", "*").replaceAll("÷", "/"))
+    const regexComparacao = /[\+, ⨯, ÷, \-]/
 
-    if (resultado !== NaN && resultado !== Infinity) return eval(expressao.replaceAll("⨯", "*").replaceAll("÷", "/"))
+    const indexOperador = expressao.search(regexComparacao)
+
+    const expressaoDecimal = expressao
+        .split(regexComparacao)
+        .map(parte => (!isNaN(parte) ? parseInt(parte, baseSelecionada) : parte))
+        .join(expressao[indexOperador])
+
+    console.log(expressao[indexOperador])
+
+    const resultado = eval(expressaoDecimal.replaceAll("⨯", "*").replaceAll("÷", "/")).toString(baseSelecionada)
+
+    if (resultado !== NaN && resultado !== Infinity) return resultado
 
     return 0
 }
